@@ -194,7 +194,7 @@ Tests confirm that simulated 6502s running on modern silicon exhibit identical c
 \subsection{Plethora of Existing Emulators}
 The popular use of the 6502 in many computers has led to a plethora of emulators for the 6502 and the machines that use it.  The software that runs on those machines can be emulated.  Digital storage preserves per-bit accuracy of the original artifacts.
 
-\footnote{End-users of both emulated and translated software running on non-original hardware do experience the software differently.  For example USB and Bluetooth controllers have more latency then the original NES controllers.  Also, modern displays with digital inputs have differences.  The input signal lacks both "snow" and blurring between pixels.  Modern display signal processing adds delay.}
+\footnote{End-users of both emulated and translated software running on non-original hardware do experience the software differently.  For example USB and Bluetooth controllers have more latency than the original NES controllers.  Also, modern displays with digital inputs have differences.  Digital displays lack both analog noise ("snow") and blurring between pixels.  Digitally processing the input signal adds latency before the display output is updated.}
 
 Our translator allows the semantics of the original code to be preserved while decoupling the semantics of the original code from the original hardware and software artifacts.
 
@@ -245,7 +245,7 @@ The current state has the following limitations:
     \item 256-byte input size restriction.  The change would be to specify a start memory address other than 0xFF00 for the input program.
     \item No support for self-modifying code.  This is intentional as the run-time does not decode instructions.
     \item Emulation-like arithmetic operations.  The current implementation emulates CPU flags.  Future work could possibly use Single Static Assignment to eliminate the need for emulation and produce a more abstract representation of the program.
-    \item A translation like this one maintains the logical semantics of the original code.  Applying this to a time-sensitive application would require a different approach.  For example a video game would have important timing requirements often around horizontal and vertical video synchronization signals.
+    \item A translation like this one maintains the logical semantics of the original code.  Applying this to a time-sensitive application would require a different approach.  For example, video games often have critical timing requirements around horizontal and vertical sync signals.
     \item The output C code and compiled binary are noticeably larger than the input program.  Woz Monitor is 265 bytes as input.  The output C code is 40,069 bytes.  Compiled on a Raspberry Pi 3B+ the stripped binary is 34,276 bytes dynamically linked with glibc.
 \end{itemize}
 
